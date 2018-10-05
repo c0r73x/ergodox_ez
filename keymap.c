@@ -6,6 +6,7 @@
 #include "keymap_swedish.h"
 
 #define KC_TRNS KC_TRANSPARENT
+#define KEYMAP LAYOUT_ergodox
 
 enum layers {
     BASE, // default layer
