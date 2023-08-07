@@ -1,9 +1,12 @@
-#include "debug.h"
-#include "ergodox_ez.h"
-#include "action_layer.h"
+#include QMK_KEYBOARD_H
 #include "version.h"
+#include "debug.h"
+#include "action_layer.h"
+#include "os_detection.h"
 
-#include "keymap_swedish.h"
+#include "keymap_swedish_mac_ansi.h"
+// #include "keymap_swedish.h"
+#include "keymap_nordic.h"
 
 #define KC_TRNS KC_TRANSPARENT
 #define KEYMAP LAYOUT_ergodox
@@ -23,7 +26,7 @@ enum custom_keycodes {
     VRSN,
     RGB_SLD,
     APQU, // '"
-    TILD, // ~
+    TILD_SE, // ~
     CIRC, // ^
     ACUT, // ´
     GRAV, // `
@@ -34,22 +37,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = KEYMAP(
         // left hand
         GRAV,      KC_7,     KC_5,        KC_3,        KC_1,        KC_9, KC_MEDIA_PLAY_PAUSE,
-        KC_TAB,    NO_AA,    NO_AE,       NO_OSLH,     KC_P,        KC_Y, KC_DELETE,
+        KC_TAB,    SE_ARNG,  SE_ADIA,     SE_ODIA,     KC_P,        KC_Y, KC_DELETE,
         KC_ESCAPE, KC_A,     GUI_T(KC_O), ALT_T(KC_E), CTL_T(KC_U), KC_I,
-        KC_LSHIFT, KC_DOT,   KC_Q,        KC_J,        KC_K,        KC_X, LSFT(KC_INSERT),
+        KC_LSFT,   KC_DOT,   KC_Q,        KC_J,        KC_K,        KC_X, LSFT(KC_INSERT),
         KC_LCTL,   KC_LALT,  KC_UP,       KC_RIGHT,    KC_LGUI,
         KC_AUDIO_VOL_DOWN,   KC_AUDIO_VOL_UP,
         KC_HOME,
         KC_SPACE, KC_TAB, LT(NUMP, KC_END),
         // right hand
-        KC_PSCREEN,    KC_0,     KC_2,         KC_4,        KC_6,         KC_8, ACUT,
-        TG(GAME),      KC_F,     KC_G,         KC_C,        KC_R,         KC_L, APQU,
-                       KC_D,     RCTL_T(KC_H), ALT_T(KC_T), RGUI_T(KC_N), KC_S, NO_MINS,
-        TG(POE),       KC_B,     KC_M,         KC_W,        KC_V,         KC_Z, KC_RSHIFT,
-        MO(SYMB),      MO(MUSE), TG(NUMP),     KC_RALT,     KC_RCTL,
+        KC_PSCR,    KC_0,     KC_2,         KC_4,        KC_6,         KC_8, ACUT,
+        TG(GAME),   KC_F,     KC_G,         KC_C,        KC_R,         KC_L, APQU,
+                    KC_D,     RCTL_T(KC_H), ALT_T(KC_T), RGUI_T(KC_N), KC_S, SE_MINS,
+        TG(POE),    KC_B,     KC_M,         KC_W,        KC_V,         KC_Z, KC_RSFT,
+        MO(SYMB),   MO(MUSE), TG(NUMP),     KC_RALT,     KC_RCTL,
         KC_MEDIA_PREV_TRACK, KC_MEDIA_NEXT_TRACK,
         KC_PGUP,
-        KC_PGDOWN, KC_BSPACE, KC_ENTER
+        KC_PGDN, KC_BSPC, KC_ENTER
     ),
 
     [GAME] = KEYMAP(
@@ -63,10 +66,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS,
         // right hand
-        KC_TRNS, KC_6,    KC_7,    KC_8,     KC_9,    KC_0,    NO_PLUS,
-        KC_TRNS, KC_Y,    KC_U,    KC_I,     KC_O,    KC_P,    NO_AA,
-                 KC_H,    KC_J,    KC_K,     KC_L,    NO_OSLH, NO_AE,
-        KC_TRNS, KC_N,    KC_M,    KC_COMMA, KC_DOT,  NO_MINS, KC_TRNS,
+        KC_TRNS, KC_6,    KC_7,    KC_8,     KC_9,    KC_0,    SE_PLUS,
+        KC_TRNS, KC_Y,    KC_U,    KC_I,     KC_O,    KC_P,    SE_ARNG,
+                 KC_H,    KC_J,    KC_K,     KC_L,    SE_ODIA, SE_ADIA,
+        KC_TRNS, KC_N,    KC_M,    KC_COMMA, KC_DOT,  SE_MINS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,
         KC_TRNS, KC_TRNS,
         KC_TRNS,
@@ -97,17 +100,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [SYMB] = KEYMAP(
         // left hand
         KC_TRNS, KC_F1,    KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_TRNS,
-        KC_TRNS, NO_LBRC,  NO_RBRC, NO_LPRN, NO_RPRN, NO_QUES, KC_TRNS,
-        KC_TRNS, NO_LCBR,  NO_RCBR, NO_BSLS, NO_SLSH, KC_EXLM,
-        KC_TRNS, KC_COMMA, NO_SCLN, NO_AT,   NO_ASTR, KC_TRNS, KC_TRNS,
+        KC_TRNS, SE_LBRC,  SE_RBRC, SE_LPRN, SE_RPRN, SE_QUES, KC_TRNS,
+        KC_TRNS, SE_LCBR,  SE_RCBR, SE_BSLS, SE_SLSH, KC_EXLM,
+        KC_TRNS, KC_COMMA, SE_SCLN, SE_AT,   SE_ASTR, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,
         RGB_MOD,  KC_TRNS,
         KC_TRNS,
         RGB_VAD, RGB_VAI, KC_F11,
         // right hand
         KC_TRNS, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_TRNS,
-        KC_TRNS, NO_PND,  NO_EURO, NO_DLR,  NO_AMPR, NO_PIPE, CIRC,
-                 KC_DLR,  NO_LESS, NO_GRTR, NO_EQL,  TILD,    NO_PLUS,
+        KC_TRNS, SE_PND,  SE_EURO, SE_DLR,  SE_AMPR, SE_PIPE, CIRC,
+                 KC_DLR,  SE_LABK, SE_RABK, SE_EQL,  TILD_SE,    SE_PLUS,
         KC_TRNS, KC_PERC, KC_HASH, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         RGB_TOG, RGB_SLD,
@@ -147,11 +150,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS,
         // right hand
-        KC_NUMLOCK, KC_TRNS,  KC_TRNS, KC_KP_SLASH, KC_KP_ASTERISK, KC_TRNS,     KC_TRNS,
-        KC_TRNS,    KC_TRNS,  KC_KP_7, KC_KP_8,     KC_KP_9,        KC_KP_MINUS, KC_TRNS,
-                    KC_TRNS,  KC_KP_4, KC_KP_5,     KC_KP_6,        KC_KP_PLUS,  KC_TRNS,
-        KC_TRNS,    KC_TRNS,  KC_KP_1, KC_KP_2,     KC_KP_3,        KC_EQUAL,    KC_TRNS,
-        KC_KP_0,    KC_COMMA, KC_TRNS, KC_TRNS,     KC_TRNS,
+        KC_NUM_LOCK, KC_TRNS,  KC_TRNS, KC_KP_SLASH, KC_KP_ASTERISK, KC_TRNS,     KC_TRNS,
+        KC_TRNS,     KC_TRNS,  KC_KP_7, KC_KP_8,     KC_KP_9,        KC_KP_MINUS, KC_TRNS,
+                     KC_TRNS,  KC_KP_4, KC_KP_5,     KC_KP_6,        KC_KP_PLUS,  KC_TRNS,
+        KC_TRNS,     KC_TRNS,  KC_KP_1, KC_KP_2,     KC_KP_3,        KC_EQUAL,    KC_TRNS,
+        KC_KP_0,     KC_COMMA, KC_TRNS, KC_TRNS,     KC_TRNS,
         KC_TRNS, KC_TRNS,
         KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS
@@ -163,21 +166,6 @@ const uint16_t PROGMEM fn_actions[] = {
     [1] = ACTION_LAYER_TAP_TOGGLE(1)
 };
 
-// leaving this in place for compatibilty with old keymaps cloned and re-compiled.
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
-{
-    switch (id) {
-        case 0:
-            if (record->event.pressed) {
-                SEND_STRING(QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-            }
-
-            break;
-    }
-
-    return MACRO_NONE;
-};
-
 void matrix_init_user(void)
 {
     #ifdef RGBLIGHT_COLOR_LAYER_0
@@ -186,12 +174,12 @@ void matrix_init_user(void)
 };
 
 void press_key_with_level_mods(uint16_t key) {
-    const uint8_t interesting_mods = MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT) | MOD_BIT(KC_RALT);
+    const uint8_t interesting_mods = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT) | MOD_BIT(KC_RALT);
 
     // Save the state
     const uint8_t real_mods = get_mods();
     const uint8_t weak_mods = get_weak_mods();
-    const uint8_t macro_mods = get_macro_mods();
+    /* const uint8_t macro_mods = get_macro_mods(); */
 
     uint8_t target_mods = (key >> 8) & (QK_MODS_MAX >> 8);
     // The 5th bit indicates that it's a right hand mod,
@@ -204,7 +192,7 @@ void press_key_with_level_mods(uint16_t key) {
     // Clear the mods that we are potentially going to modify,
     del_mods(interesting_mods);
     del_weak_mods(interesting_mods);
-    del_macro_mods(interesting_mods);
+    /* del_macro_mods(interesting_mods); */
 
     // Enable the mods that we need
     add_mods(target_mods & interesting_mods);
@@ -216,7 +204,7 @@ void press_key_with_level_mods(uint16_t key) {
     // Restore the previous state
     set_mods(real_mods);
     set_weak_mods(weak_mods);
-    set_macro_mods(macro_mods);
+    /* set_macro_mods(macro_mods); */
     send_keyboard_report();
 }
 
@@ -228,7 +216,7 @@ bool override_key(keyrecord_t *record, uint16_t normal, uint16_t shifted)
 
     if (record->event.pressed) {
         // Todo share this code with send keyboard report
-        #ifndef NO_ACTION_ONESHOT
+        #ifndef SE_ACTION_ONESHOT
         if (get_oneshot_mods()) {
             #if (defined(ONESHOT_TIMEOUT) && (ONESHOT_TIMEOUT > 0))
 
@@ -292,7 +280,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 
         case RGB_SLD:
             if (record->event.pressed) {
-                rgblight_mode(1);
+                #ifdef RGBLIGHT_ENABLE
+                  rgblight_mode(1);
+                #endif
             }
 
             return false;
@@ -301,34 +291,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         case APQU:
             return override_key(record, NO_APOS, NO_QUO2);
 
-        case TILD: {
-            if (record->event.pressed) {
-                register_code16(KC_RALT);
-                register_code16(NO_QUOT);
-
-                unregister_code16(NO_QUOT);
-                unregister_code16(KC_RALT);
-
-                register_code16(KC_SPACE);
-                unregister_code16(KC_SPACE);
-            }
-            return true;
-        }
+        case TILD_SE:
+            return wake_dead_key(SE_TILD, record);
 
         case CIRC:
-            return wake_dead_key(NO_CIRC, record);
+            return wake_dead_key(SE_CIRC, record);
 
         case ACUT:
-            return wake_dead_key(NO_ACUT, record);
+            return wake_dead_key(SE_ACUT, record);
 
         case GRAV:
-            return wake_dead_key(NO_GRV, record);
+            return wake_dead_key(SE_GRV, record);
     }
 
     return true;
 }
 
-uint32_t layer_state_set_user(uint32_t state)
+layer_state_t layer_state_set_user(layer_state_t state)
 {
 
     uint8_t layer = biton32(state);
