@@ -19,7 +19,7 @@ enum layers {
     MUSE, // mouse control
     NUMP, // numpad
     GAME, // qwertyish for games
-    POE, // Path of Exile
+    // POE, // Path of Exile
 };
 
 enum custom_keycodes {
@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // left hand
         GRAV,      KC_7,     KC_5,        KC_3,        KC_1,        KC_9, KC_MEDIA_PLAY_PAUSE,
         KC_TAB,    SE_ARNG,  SE_ADIA,     SE_ODIA,     KC_P,        KC_Y, KC_DELETE,
-        KC_ESCAPE, KC_A,     GUI_T(KC_O), ALT_T(KC_E), CTL_T(KC_U), KC_I,
+        KC_ESCAPE, LSFT_T(KC_A),     GUI_T(KC_O), ALT_T(KC_E), CTL_T(KC_U), KC_I,
         KC_LSFT,   KC_DOT,   KC_Q,        KC_J,        KC_K,        KC_X, LSFT(KC_INSERT),
         KC_LCTL,   KC_LALT,  KC_UP,       KC_RIGHT,    KC_LGUI,
         KC_AUDIO_VOL_DOWN,   KC_AUDIO_VOL_UP,
@@ -49,8 +49,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // right hand
         KC_PSCR,    KC_0,     KC_2,         KC_4,        KC_6,         KC_8, ACUT,
         TG(GAME),   KC_F,     KC_G,         KC_C,        KC_R,         KC_L, APQU,
-                    KC_D,     RCTL_T(KC_H), ALT_T(KC_T), RGUI_T(KC_N), KC_S, SE_MINS,
-        TG(POE),    KC_B,     KC_M,         KC_W,        KC_V,         KC_Z, KC_RSFT,
+                    KC_D,     RCTL_T(KC_H), ALT_T(KC_T), RGUI_T(KC_N), RSFT_T(KC_S), SE_MINS,
+        KC_NO,      KC_B,     KC_M,         KC_W,        KC_V,         KC_Z, KC_RSFT,
         MO(SYMB),   MO(MUSE), TG(NUMP),     KC_RALT,     KC_RCTL,
         KC_MEDIA_PREV_TRACK, KC_MEDIA_NEXT_TRACK,
         KC_PGUP,
@@ -78,26 +78,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS, KC_TRNS, KC_TRNS
     ),
 
-    [POE] = KEYMAP(
-        // left hand
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_T,    KC_Q,    KC_W,    KC_E,    KC_R, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_A,    KC_S,    KC_D,    KC_5,
-        KC_TRNS, KC_Z,    KC_TRNS, KC_TRNS, KC_1,    KC_2, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_C,    KC_B,
-        KC_TRNS, KC_TRNS,
-        KC_TRNS,
-        KC_3,    KC_4,    KC_TAB,
-        // right hand
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS,
-        KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS
-    ),
+    // [POE] = KEYMAP(
+    //     // left hand
+    //     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    //     KC_TRNS, KC_T,    KC_Q,    KC_W,    KC_E,    KC_R, KC_TRNS,
+    //     KC_TRNS, KC_TRNS, KC_A,    KC_S,    KC_D,    KC_5,
+    //     KC_TRNS, KC_Z,    KC_TRNS, KC_TRNS, KC_1,    KC_2, KC_TRNS,
+    //     KC_TRNS, KC_TRNS, KC_TRNS, KC_C,    KC_B,
+    //     KC_TRNS, KC_TRNS,
+    //     KC_TRNS,
+    //     KC_3,    KC_4,    KC_TAB,
+    //     // right hand
+    //     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    //     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    //              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    //     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    //     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    //     KC_TRNS, KC_TRNS,
+    //     KC_TRNS,
+    //     KC_TRNS, KC_TRNS, KC_TRNS
+    // ),
 
     [SYMB] = KEYMAP(
         // left hand
