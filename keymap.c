@@ -4,11 +4,9 @@
 #include "action_layer.h"
 #include "os_detection.h"
 
-#include "keymap_swedish_mac_ansi.h"
-// #include "keymap_swedish.h"
+// #include "keymap_swedish_mac_ansi.h"
+#include "keymap_swedish.h"
 #include "keymap_nordic.h"
-
-#define OSX_AT A(SE_2)
 
 #define KC_TRNS KC_TRANSPARENT
 #define KEYMAP LAYOUT_ergodox
@@ -104,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS, KC_F1,    KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_TRNS,
         KC_TRNS, SE_LBRC,  SE_RBRC, SE_LPRN, SE_RPRN, SE_QUES, KC_TRNS,
         KC_TRNS, SE_LCBR,  SE_RCBR, SE_BSLS, SE_SLSH, KC_EXLM,
-        KC_TRNS, KC_COMMA, SE_SCLN, OSX_AT,   SE_ASTR, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_COMMA, SE_SCLN, SE_AT,   SE_ASTR, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,
         RGB_MOD,  KC_TRNS,
         KC_TRNS,
