@@ -4,8 +4,12 @@
 #include "action_layer.h"
 #include "os_detection.h"
 
-// #include "keymap_swedish_mac_ansi.h"
-#include "keymap_swedish.h"
+#define OSX
+#ifdef OSX
+    #include "keymap_swedish_mac_ansi.h"
+#else
+    #include "keymap_swedish.h"
+#endif
 #include "keymap_nordic.h"
 
 #define KC_TRNS KC_TRANSPARENT
@@ -39,20 +43,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         GRAV,      KC_7,     KC_5,        KC_3,        KC_1,        KC_9, KC_MEDIA_PLAY_PAUSE,
         KC_TAB,    SE_ARNG,  SE_ADIA,     SE_ODIA,     KC_P,        KC_Y, KC_DELETE,
         KC_ESCAPE, KC_A,     GUI_T(KC_O), ALT_T(KC_E), CTL_T(KC_U), KC_I,
-        KC_LSFT,   KC_DOT,   KC_Q,        KC_J,        KC_K,        KC_X, LSFT(KC_INSERT),
+        KC_HOME,   KC_DOT,   KC_Q,        KC_J,        KC_K,        KC_X, LSFT(KC_INSERT),
         KC_LCTL,   KC_LALT,  KC_UP,       KC_RIGHT,    KC_LGUI,
         KC_AUDIO_VOL_DOWN,   KC_AUDIO_VOL_UP,
         KC_HOME,
-        KC_SPACE, KC_TAB, LT(NUMP, KC_END),
+        LSFT_T(KC_SPACE), KC_TAB, LT(NUMP, KC_END),
         // right hand
         KC_PSCR,    KC_0,     KC_2,         KC_4,        KC_6,         KC_8, ACUT,
         TG(GAME),   KC_F,     KC_G,         KC_C,        KC_R,         KC_L, APQU,
                     KC_D,     RCTL_T(KC_H), ALT_T(KC_T), RGUI_T(KC_N), KC_S, SE_MINS,
-        KC_NO,      KC_B,     KC_M,         KC_W,        KC_V,         KC_Z, KC_RSFT,
+        KC_NO,      KC_B,     KC_M,         KC_W,        KC_V,         KC_Z, KC_END,
         MO(SYMB),   MO(MUSE), TG(NUMP),     KC_RALT,     KC_RCTL,
         KC_MEDIA_PREV_TRACK, KC_MEDIA_NEXT_TRACK,
         KC_PGUP,
-        KC_PGDN, KC_BSPC, KC_ENTER
+        KC_PGDN, KC_BSPC, RSFT_T(KC_ENTER)
     ),
 
     [GAME] = KEYMAP(
