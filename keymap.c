@@ -4,8 +4,15 @@
 #include "action_layer.h"
 #include "os_detection.h"
 
-// #include "keymap_swedish_mac_ansi.h"
-#include "keymap_swedish.h"
+#define OSX
+#ifdef OSX
+    #include "keymap_swedish_mac_ansi.h"
+    #define OSX_AT A(SE_2)
+    #undef SE_AT
+    #define SE_AT OSX_AT
+#else
+    #include "keymap_swedish.h"
+#endif
 #include "keymap_nordic.h"
 
 #define KC_TRNS KC_TRANSPARENT
@@ -15,6 +22,7 @@ enum layers {
     BASE, // default layer
     SYMB, // symbols
     MUSE, // mouse control
+    PNUM, // programmer numbers
     NUMP, // numpad
     GAME, // qwertyish for games
     // POE, // Path of Exile
@@ -43,13 +51,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL,   KC_LALT,  KC_UP,       KC_RIGHT,    KC_LGUI,
         KC_AUDIO_VOL_DOWN,   KC_AUDIO_VOL_UP,
         KC_HOME,
-        KC_SPACE, KC_TAB, LT(NUMP, KC_END),
+        KC_SPACE, MO(MUSE), LT(NUMP, KC_END),
         // right hand
         KC_PSCR,    KC_0,     KC_2,         KC_4,        KC_6,         KC_8, ACUT,
         TG(GAME),   KC_F,     KC_G,         KC_C,        KC_R,         KC_L, APQU,
                     KC_D,     RCTL_T(KC_H), ALT_T(KC_T), RGUI_T(KC_N), KC_S, SE_MINS,
         KC_NO,      KC_B,     KC_M,         KC_W,        KC_V,         KC_Z, KC_RSFT,
-        MO(SYMB),   MO(MUSE), TG(NUMP),     KC_RALT,     KC_RCTL,
+        MO(SYMB),   MO(PNUM), TG(NUMP),     KC_RALT,     KC_RCTL,
         KC_MEDIA_PREV_TRACK, KC_MEDIA_NEXT_TRACK,
         KC_PGUP,
         KC_PGDN, KC_BSPC, KC_ENTER
@@ -137,6 +145,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS, KC_TRNS,
         KC_TRNS,
         KC_MS_BTN3, KC_MS_BTN2, KC_MS_BTN1
+    ),
+
+    [PNUM] = KEYMAP(
+        // left hand
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_KP_7, KC_KP_5, KC_KP_3, KC_KP_1, KC_KP_9,
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS,
+        KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS,
+        // right hand
+        KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                 KC_KP_0,  KC_KP_2, KC_KP_4, KC_KP_6, KC_KP_8, KC_TRNS,
+        KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS,
+        KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS
     ),
 
     [NUMP] = KEYMAP(
