@@ -7,6 +7,9 @@
 #define OSX
 #ifdef OSX
     #include "keymap_swedish_mac_ansi.h"
+    #define OSX_AT A(SE_2)
+    #undef SE_AT
+    #define SE_AT OSX_AT
 #else
     #include "keymap_swedish.h"
 #endif
