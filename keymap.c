@@ -7,9 +7,9 @@
 #define OSX
 #ifdef OSX
     #include "keymap_swedish_mac_ansi.h"
-    #define OSX_AT A(SE_2)
+    #define OSMS_AT A(SE_2)
     #undef SE_AT
-    #define SE_AT OSX_AT
+    #define SE_AT OSMS_AT
 #else
     #include "keymap_swedish.h"
 #endif
@@ -112,39 +112,39 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS, SE_LCBR,  SE_RCBR, SE_BSLS, SE_SLSH, KC_EXLM,
         KC_TRNS, KC_COMMA, SE_SCLN, SE_AT,   SE_ASTR, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,
-        RGB_MOD,  KC_TRNS,
+        RM_NEXT,  KC_TRNS,
         KC_TRNS,
-        RGB_VAD, RGB_VAI, KC_F11,
+        RM_VALD, RM_VALU, KC_F11,
         // right hand
         KC_TRNS, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_TRNS,
         KC_TRNS, SE_PND,  SE_EURO, SE_DLR,  SE_AMPR, SE_PIPE, CIRC,
                  KC_DLR,  KC_NUBS, S(KC_NUBS), SE_EQL,  TILD_SE,    SE_PLUS,
         KC_TRNS, KC_PERC, KC_HASH, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-        RGB_TOG, RGB_SLD,
+        RM_TOGG, RGB_SLD,
         KC_TRNS,
-        KC_F12,   RGB_HUD, RGB_HUI
+        KC_F12,   RM_HUED, RM_HUEU
     ),
 
     [MUSE] = KEYMAP(
         // left hand
         KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS,     KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS,    KC_MS_UP,   KC_TRNS,     KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_WH_L, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, KC_WH_R,
-        KC_TRNS, KC_TRNS, KC_TRNS,    KC_WH_D,    KC_WH_U,     KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS,    MS_UP,      KC_TRNS,     KC_TRNS, KC_TRNS,
+        KC_TRNS, MS_WHLL, MS_LEFT,    MS_DOWN,    MS_RGHT,     MS_WHLR,
+        KC_TRNS, KC_TRNS, KC_TRNS,    MS_WHLD,    MS_WHLU,     KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS,
         KC_TRNS, KC_TRNS,
         KC_TRNS,
-        KC_MS_BTN1, KC_MS_BTN2, KC_MS_BTN3,
+        MS_BTN1, MS_BTN2, MS_BTN3,
         // right hand
         KC_TRNS, KC_TRNS, KC_TRNS,      KC_TRNS,      KC_TRNS,      KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS,      KC_TRNS,      KC_TRNS,      KC_TRNS, KC_TRNS,
-                 KC_TRNS, KC_MS_ACCEL0, KC_MS_ACCEL1, KC_MS_ACCEL2, KC_TRNS, KC_TRNS,
+                 KC_TRNS, MS_ACL0,      MS_ACL1,      MS_ACL2,      KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS,      KC_TRNS,      KC_TRNS,      KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS,      KC_TRNS,      KC_TRNS,
         KC_TRNS, KC_TRNS,
         KC_TRNS,
-        KC_MS_BTN3, KC_MS_BTN2, KC_MS_BTN1
+        MS_BTN3, MS_BTN2, MS_BTN1
     ),
 
     [PNUM] = KEYMAP(
