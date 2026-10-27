@@ -1,0 +1,8 @@
+#ifndef KEYMAP_CONFIG_H
+#define KEYMAP_CONFIG_H
+
+#define PERMISSIVE_HOLD
+#define TAPPING_TERM 250
+#define TAPPING_TERM_PER_KEY
+
+#endif // !KEYMAP_CONFIG_H

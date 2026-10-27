@@ -3,6 +3,13 @@
 # details), include the following define:
 # OPT_DEFS += -DLEFT_LEDS
 
+# OS selection: default Linux, override with make ergodox_ez:c0r73x KBD_OS=macos
+ifeq ($(KBD_OS),macos)
+  OPT_DEFS += -DKBD_OS_MACOS
+else
+  OPT_DEFS += -DKBD_OS_LINUX
+endif
+
 CUSTOM_MATRIX    = lite # Custom matrix file for the ErgoDox EZ
 
 # project specific files

@@ -4,13 +4,23 @@
 #include "action_layer.h"
 #include "os_detection.h"
 
-#define OSX
-#ifdef OSX
-    #include "keymap_swedish_mac_ansi.h"
+// OS selection: auto-detect build host, override with EXTRAFLAGS="-DKBD_OS_MACOS" or "-DKBD_OS_LINUX"
+#if !defined(KBD_OS_MACOS) && !defined(KBD_OS_LINUX)
+  #if defined(__APPLE__) && defined(__MACH__)
+    #define KBD_OS_MACOS
+  #elif defined(__linux__)
+    #define KBD_OS_LINUX
+  #else
+    #define KBD_OS_LINUX  // default fallback (cross-compiler doesn't define __APPLE__)
+  #endif
+#endif
+
+#if defined(KBD_OS_MACOS)
+    #include "keymap_swedish_mac_iso.h"
     #define OSMS_AT A(SE_2)
     #undef SE_AT
     #define SE_AT OSMS_AT
-#else
+#elif defined(KBD_OS_LINUX)
     #include "keymap_swedish.h"
 #endif
 #include "keymap_nordic.h"
